@@ -5,7 +5,7 @@ from .models import City
 
 def main(request):
 
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=71e98b7bc3f9eef0d32a9a975daac3cb'
 
     err_msg = ''
     message = ''
@@ -19,7 +19,6 @@ def main(request):
             existing_city_count = City.objects.filter(name=new_city).count()
             
             r = requests.get(url.format(new_city)).json()
-            print(r)
 
             if r['cod'] == 200:
                 if City.objects.filter(name=r['name'],weather_id=r['id']).exists():
